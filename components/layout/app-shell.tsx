@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Brain, History, Home, LineChart, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { AuthNav } from '@/components/auth/auth-nav';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: Home },
@@ -30,9 +31,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </Button>
             ))}
           </nav>
-          <Button asChild size="sm">
-            <Link href="/scenarios">Start practice</Link>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button asChild size="sm" className="hidden sm:inline-flex">
+              <Link href="/scenarios">Start practice</Link>
+            </Button>
+            <AuthNav />
+          </div>
         </div>
       </header>
       <main>{children}</main>
