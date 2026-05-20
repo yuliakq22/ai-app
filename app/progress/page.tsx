@@ -1,11 +1,11 @@
-import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Card } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 
 const timeline = [
-  { label: "Week 1", clarity: 58, assertiveness: 52 },
-  { label: "Week 2", clarity: 66, assertiveness: 61 },
-  { label: "Week 3", clarity: 72, assertiveness: 68 },
-  { label: "Week 4", clarity: 78, assertiveness: 74 }
+  { label: 'Week 1', clarity: 58, assertiveness: 52 },
+  { label: 'Week 2', clarity: 66, assertiveness: 61 },
+  { label: 'Week 3', clarity: 72, assertiveness: 68 },
+  { label: 'Week 4', clarity: 78, assertiveness: 74 }
 ];
 
 export default function ProgressPage() {

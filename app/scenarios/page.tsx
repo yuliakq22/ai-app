@@ -1,5 +1,5 @@
-import { ScenarioCard } from "@/components/scenarios/scenario-card";
-import { assertivenessScenarios } from "@/lib/ai/scenarios";
+import { ScenarioCard } from '@/components/scenarios/scenario-card';
+import { assertivenessScenarios } from '@/lib/ai/scenarios';
 
 export default function ScenariosPage() {
   return (

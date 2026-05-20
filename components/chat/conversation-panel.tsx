@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useChat } from "@ai-sdk/react";
-import { Send, SquareCheckBig } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ChatMessage } from "@/components/chat/chat-message";
-import { TypingIndicator } from "@/components/chat/streaming-message";
-import { EvaluationCard } from "@/components/chat/evaluation-card";
-import { PersonalityBadge } from "@/components/chat/personality-badge";
-import type { CommunicationEvaluation } from "@/lib/ai/evaluation-schema";
-import type { Scenario } from "@/lib/ai/scenarios";
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useChat } from '@ai-sdk/react';
+import { Send, SquareCheckBig } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { ChatMessage } from '@/components/chat/chat-message';
+import { TypingIndicator } from '@/components/chat/streaming-message';
+import { EvaluationCard } from '@/components/chat/evaluation-card';
+import { PersonalityBadge } from '@/components/chat/personality-badge';
+import type { CommunicationEvaluation } from '@/lib/ai/evaluation-schema';
+import type { Scenario } from '@/lib/ai/scenarios';
 
 export function ConversationPanel({ scenario }: { scenario: Scenario }) {
   const [evaluation, setEvaluation] = useState<CommunicationEvaluation | null>(null);
@@ -19,32 +19,32 @@ export function ConversationPanel({ scenario }: { scenario: Scenario }) {
 
   const initialMessage = useMemo(
     () => ({
-      id: "opening",
-      role: "assistant" as const,
+      id: 'opening',
+      role: 'assistant' as const,
       content: openingForScenario(scenario.id)
     }),
     [scenario.id]
   );
 
   const { messages, input, handleInputChange, handleSubmit, isLoading, append } = useChat({
-    api: "/api/chat",
+    api: '/api/chat',
     body: { scenarioId: scenario.id },
     initialMessages: [initialMessage]
   });
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages, isLoading, evaluation]);
 
   const readyForFeedback = messages.some((message) =>
-    String(message.content).includes("[READY_FOR_FEEDBACK]")
+    String(message.content).includes('[READY_FOR_FEEDBACK]')
   );
 
   async function evaluateSession() {
     setIsEvaluating(true);
-    const response = await fetch("/api/evaluate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const response = await fetch('/api/evaluate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         scenarioId: scenario.id,
         messages: messages.map(({ role, content }) => ({ role, content }))
@@ -69,11 +69,7 @@ export function ConversationPanel({ scenario }: { scenario: Scenario }) {
         </div>
         <div className="flex-1 space-y-4 overflow-y-auto p-4">
           {messages.map((message) => (
-            <ChatMessage
-              key={message.id}
-              role={message.role}
-              content={String(message.content)}
-            />
+            <ChatMessage key={message.id} role={message.role} content={String(message.content)} />
           ))}
           {isLoading ? <TypingIndicator /> : null}
           <div ref={bottomRef} />
@@ -108,12 +104,12 @@ export function ConversationPanel({ scenario }: { scenario: Scenario }) {
         </Card>
         <Button
           className="w-full"
-          variant={readyForFeedback ? "default" : "secondary"}
+          variant={readyForFeedback ? 'default' : 'secondary'}
           disabled={isEvaluating || messages.length < 4}
           onClick={evaluateSession}
         >
           <SquareCheckBig className="size-4" />
-          {isEvaluating ? "Reading the conversation..." : "Get coaching feedback"}
+          {isEvaluating ? 'Reading the conversation...' : 'Get coaching feedback'}
         </Button>
         {evaluation ? <EvaluationCard evaluation={evaluation} /> : null}
         <Button
@@ -121,7 +117,7 @@ export function ConversationPanel({ scenario }: { scenario: Scenario }) {
           variant="outline"
           onClick={() =>
             append({
-              role: "user",
+              role: 'user',
               content: "Let's pause the roleplay here and move toward feedback."
             })
           }
@@ -135,14 +131,20 @@ export function ConversationPanel({ scenario }: { scenario: Scenario }) {
 
 function openingForScenario(id: string) {
   const openings: Record<string, string> = {
-    "extra-work": "Hey, quick thing. I need you to take on the client update today. I know you have other work, but this really cannot wait.",
-    "friend-boundaries": "I saw you did not answer last night. I guess I thought we were closer than that.",
-    "passive-aggressive-coworker": "Some people seem to disappear when the details matter, but sure, we can pretend the timeline slipped by itself.",
-    "relationship-respect": "I am just saying, if you actually listened the first time, I would not have to repeat myself.",
-    "restaurant-return": "Everything okay over here?",
-    "salary-negotiation": "We are excited about you. The offer is $92,000, and we would love to get your answer this week.",
-    "manipulative-communication": "After everything I have done, I honestly cannot believe you would say no to this."
+    'extra-work':
+      'Hey, quick thing. I need you to take on the client update today. I know you have other work, but this really cannot wait.',
+    'friend-boundaries':
+      'I saw you did not answer last night. I guess I thought we were closer than that.',
+    'passive-aggressive-coworker':
+      'Some people seem to disappear when the details matter, but sure, we can pretend the timeline slipped by itself.',
+    'relationship-respect':
+      'I am just saying, if you actually listened the first time, I would not have to repeat myself.',
+    'restaurant-return': 'Everything okay over here?',
+    'salary-negotiation':
+      'We are excited about you. The offer is $92,000, and we would love to get your answer this week.',
+    'manipulative-communication':
+      'After everything I have done, I honestly cannot believe you would say no to this.'
   };
 
-  return openings[id] ?? "Thanks for talking. I want to bring something up directly.";
+  return openings[id] ?? 'Thanks for talking. I want to bring something up directly.';
 }

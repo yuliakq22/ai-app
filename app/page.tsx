@@ -1,23 +1,23 @@
-import Link from "next/link";
-import { ArrowRight, MessagesSquare, ShieldCheck, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import Link from 'next/link';
+import { ArrowRight, MessagesSquare, ShieldCheck, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 const pillars = [
   {
     icon: MessagesSquare,
-    title: "Practice out loud",
-    body: "Roleplay realistic moments where tone, timing, and clarity matter."
+    title: 'Practice out loud',
+    body: 'Roleplay realistic moments where tone, timing, and clarity matter.'
   },
   {
     icon: ShieldCheck,
-    title: "Stay emotionally safe",
-    body: "The product is coaching for communication skills, with no diagnosis or treatment framing."
+    title: 'Stay emotionally safe',
+    body: 'The product is coaching for communication skills, with no diagnosis or treatment framing.'
   },
   {
     icon: Sparkles,
-    title: "Get structured feedback",
-    body: "Review assertiveness, empathy, clarity, and confidence with specific rewrites."
+    title: 'Get structured feedback',
+    body: 'Review assertiveness, empathy, clarity, and confidence with specific rewrites.'
   }
 ];
 
@@ -33,8 +33,8 @@ export default function LandingPage() {
             Human Skills
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-            AI roleplay simulations for becoming clearer, steadier, and more effective in
-            difficult conversations.
+            AI roleplay simulations for becoming clearer, steadier, and more effective in difficult
+            conversations.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
@@ -55,8 +55,8 @@ export default function LandingPage() {
                 I need you to take on one more urgent task today. Can you make it happen?
               </ChatBubble>
               <ChatBubble role="You" align="right">
-                I can’t take that on today without dropping one of my current priorities. I can
-                help choose what moves, or I can pick this up tomorrow morning.
+                I can’t take that on today without dropping one of my current priorities. I can help
+                choose what moves, or I can pick this up tomorrow morning.
               </ChatBubble>
               <div className="rounded-lg bg-muted/70 p-4">
                 <p className="text-sm font-medium">Coaching snapshot</p>
@@ -93,12 +93,18 @@ function ChatBubble({
 }: {
   role: string;
   children: React.ReactNode;
-  align?: "right";
+  align?: 'right';
 }) {
   return (
-    <div className={align === "right" ? "ml-auto max-w-[88%]" : "max-w-[88%]"}>
+    <div className={align === 'right' ? 'ml-auto max-w-[88%]' : 'max-w-[88%]'}>
       <p className="mb-1 text-xs font-medium text-muted-foreground">{role}</p>
-      <div className={align === "right" ? "rounded-lg bg-primary p-4 text-sm leading-6 text-primary-foreground" : "rounded-lg border bg-background p-4 text-sm leading-6"}>
+      <div
+        className={
+          align === 'right'
+            ? 'rounded-lg bg-primary p-4 text-sm leading-6 text-primary-foreground'
+            : 'rounded-lg border bg-background p-4 text-sm leading-6'
+        }
+      >
         {children}
       </div>
     </div>

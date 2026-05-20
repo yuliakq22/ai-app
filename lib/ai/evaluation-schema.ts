@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const evaluationSchema = z.object({
   confidence: z.number().min(0).max(100),

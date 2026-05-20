@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { scenarioIcons, type Scenario } from "@/lib/ai/scenarios";
-import { useSessionStore } from "@/lib/store/session-store";
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { scenarioIcons, type Scenario } from '@/lib/ai/scenarios';
+import { useSessionStore } from '@/lib/store/session-store';
 
 export function ScenarioCard({ scenario }: { scenario: Scenario }) {
   const Icon = scenarioIcons[scenario.iconName];

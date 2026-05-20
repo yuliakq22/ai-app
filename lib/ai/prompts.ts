@@ -1,5 +1,5 @@
-import type { CoreMessage } from "ai";
-import type { Scenario } from "./scenarios";
+import type { CoreMessage } from 'ai';
+import type { Scenario } from './scenarios';
 
 export function buildRoleplaySystemPrompt(scenario: Scenario) {
   return `You are Human Skills, an AI communication roleplay partner for assertiveness training.
@@ -15,7 +15,7 @@ Roleplay setup:
 - You are roleplaying: ${scenario.role}
 - Personality: ${scenario.personality}
 - Difficulty: ${scenario.difficulty}
-- User practice goals: ${scenario.goals.join(", ")}
+- User practice goals: ${scenario.goals.join(', ')}
 
 Roleplay behavior:
 - Stay in character as the other person.
@@ -31,12 +31,12 @@ Roleplay behavior:
 export function buildEvaluationPrompt(messages: CoreMessage[], scenario: Scenario) {
   const transcript = messages
     .map((message) => `${message.role.toUpperCase()}: ${String(message.content)}`)
-    .join("\n");
+    .join('\n');
 
   return `Evaluate this assertiveness practice session as a communication coach.
 
 Scenario: ${scenario.title}
-Goals: ${scenario.goals.join(", ")}
+Goals: ${scenario.goals.join(', ')}
 
 Transcript:
 ${transcript}

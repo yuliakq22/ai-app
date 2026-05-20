@@ -1,22 +1,22 @@
-import type { Metadata } from "next";
-import { Inter, Lora } from "next/font/google";
-import "./globals.css";
-import { AppShell } from "@/components/layout/app-shell";
-import { cn } from "@/lib/utils";
+import type { Metadata } from 'next';
+import { Inter, Lora } from 'next/font/google';
+import './globals.css';
+import { AppShell } from '@/components/layout/app-shell';
+import { cn } from '@/lib/utils';
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter"
+  subsets: ['latin'],
+  variable: '--font-inter'
 });
 
 const lora = Lora({
-  subsets: ["latin"],
-  variable: "--font-lora"
+  subsets: ['latin'],
+  variable: '--font-lora'
 });
 
 export const metadata: Metadata = {
-  title: "Human Skills",
-  description: "AI roleplay simulations for assertive, emotionally intelligent communication."
+  title: 'Human Skills',
+  description: 'AI roleplay simulations for assertive, emotionally intelligent communication.'
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.variable, lora.variable, "font-sans antialiased")}>
+      <body className={cn(inter.variable, lora.variable, 'font-sans antialiased')}>
         <AppShell>{children}</AppShell>
       </body>
     </html>

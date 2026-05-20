@@ -1,12 +1,8 @@
-import { notFound } from "next/navigation";
-import { ConversationPanel } from "@/components/chat/conversation-panel";
-import { getScenario } from "@/lib/ai/scenarios";
+import { notFound } from 'next/navigation';
+import { ConversationPanel } from '@/components/chat/conversation-panel';
+import { getScenario } from '@/lib/ai/scenarios';
 
-export default async function SessionPage({
-  params
-}: {
-  params: Promise<{ scenarioId: string }>;
-}) {
+export default async function SessionPage({ params }: { params: Promise<{ scenarioId: string }> }) {
   const { scenarioId } = await params;
   const scenario = getScenario(scenarioId);
 

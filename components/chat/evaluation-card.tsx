@@ -1,9 +1,9 @@
-import { Sparkles } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import type { CommunicationEvaluation } from "@/lib/ai/evaluation-schema";
+import { Sparkles } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import type { CommunicationEvaluation } from '@/lib/ai/evaluation-schema';
 
-const scoreLabels = ["confidence", "clarity", "empathy", "assertiveness"] as const;
+const scoreLabels = ['confidence', 'clarity', 'empathy', 'assertiveness'] as const;
 
 export function EvaluationCard({ evaluation }: { evaluation: CommunicationEvaluation }) {
   return (
@@ -32,8 +32,16 @@ export function EvaluationCard({ evaluation }: { evaluation: CommunicationEvalua
           evaluation.aggressiveLanguageExamples.length > 0) && (
           <div className="rounded-lg bg-muted/60 p-4 text-sm">
             <p className="font-medium">Language patterns noticed</p>
-            <FeedbackList title="Passive signals" items={evaluation.passiveLanguageExamples} compact />
-            <FeedbackList title="Aggressive signals" items={evaluation.aggressiveLanguageExamples} compact />
+            <FeedbackList
+              title="Passive signals"
+              items={evaluation.passiveLanguageExamples}
+              compact
+            />
+            <FeedbackList
+              title="Aggressive signals"
+              items={evaluation.aggressiveLanguageExamples}
+              compact
+            />
           </div>
         )}
         {evaluation.suggestedRewrite ? (
@@ -59,7 +67,7 @@ function FeedbackList({
   if (!items.length) return null;
 
   return (
-    <div className={compact ? "mt-3" : ""}>
+    <div className={compact ? 'mt-3' : ''}>
       <p className="mb-2 text-sm font-medium">{title}</p>
       <ul className="space-y-2 text-sm leading-6 text-muted-foreground">
         {items.map((item) => (

@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { ArrowRight, CalendarDays, Flame, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { assertivenessScenarios } from "@/lib/ai/scenarios";
+import Link from 'next/link';
+import { ArrowRight, CalendarDays, Flame, MessageCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import { assertivenessScenarios } from '@/lib/ai/scenarios';
 
 export default function DashboardPage() {
   return (

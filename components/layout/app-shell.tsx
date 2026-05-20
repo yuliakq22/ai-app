@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { Brain, History, Home, LineChart, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import { Brain, History, Home, LineChart, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const navItems = [
-  { href: "/dashboard", label: "Dashboard", icon: Home },
-  { href: "/scenarios", label: "Practice", icon: Sparkles },
-  { href: "/history", label: "History", icon: History },
-  { href: "/progress", label: "Progress", icon: LineChart }
+  { href: '/dashboard', label: 'Dashboard', icon: Home },
+  { href: '/scenarios', label: 'Practice', icon: Sparkles },
+  { href: '/history', label: 'History', icon: History },
+  { href: '/progress', label: 'Progress', icon: LineChart }
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {

@@ -1,11 +1,11 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { Card } from '@/components/ui/card';
 
 const sessions = [
-  { title: "Saying no to extra work", date: "Today", score: 84 },
-  { title: "Setting boundaries with friends", date: "Yesterday", score: 79 },
-  { title: "Returning incorrect food", date: "May 17", score: 88 }
+  { title: 'Saying no to extra work', date: 'Today', score: 84 },
+  { title: 'Setting boundaries with friends', date: 'Yesterday', score: 79 },
+  { title: 'Returning incorrect food', date: 'May 17', score: 88 }
 ];
 
 export default function HistoryPage() {
@@ -13,8 +13,8 @@ export default function HistoryPage() {
     <div className="mx-auto max-w-6xl px-4 py-8 pb-28 md:py-12">
       <h1 className="font-serif text-4xl">Session history</h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">
-        Recent practice sessions and coaching summaries will be stored here as the database layer
-        is connected to saved sessions.
+        Recent practice sessions and coaching summaries will be stored here as the database layer is
+        connected to saved sessions.
       </p>
       <div className="mt-8 space-y-4">
         {sessions.map((session) => (
