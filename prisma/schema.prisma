@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model PracticeSession {
+  id         String   @id @default(cuid())
+  scenarioId String
+  title      String
+  status     String   @default("in_progress")
+  turns      Json
+  evaluation Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ProgressSnapshot {
+  id            String   @id @default(cuid())
+  confidence    Int
+  clarity       Int
+  empathy       Int
+  assertiveness Int
+  createdAt     DateTime @default(now())
+}
