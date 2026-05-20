@@ -3,9 +3,13 @@ import { ArrowRight, CalendarDays, Flame, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { SupabaseConnectionCard } from '@/components/dashboard/supabase-connection-card';
 import { assertivenessScenarios } from '@/lib/ai/scenarios';
+import { getSupabaseEnvStatus } from '@/lib/supabase/client';
 
 export default function DashboardPage() {
+  const supabaseEnv = getSupabaseEnvStatus();
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 pb-28 md:py-12">
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -59,6 +63,10 @@ export default function DashboardPage() {
             <Bar label="Confidence" value={71} />
           </div>
         </Card>
+      </div>
+
+      <div className="mt-5">
+        <SupabaseConnectionCard initialEnv={supabaseEnv} />
       </div>
     </div>
   );
