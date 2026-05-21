@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+
 import { getSupabaseEnvStatus } from '@/lib/supabase/client';
 
 export const dynamic = 'force-dynamic';

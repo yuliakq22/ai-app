@@ -1,10 +1,13 @@
 import Link from 'next/link';
-import { ArrowRight, CalendarDays, Flame, MessageCircle } from 'lucide-react';
+
+import { ArrowRight } from 'lucide-react';
+
+import { SupabaseConnectionCard } from '@/components/dashboard/supabase-connection-card';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { SupabaseConnectionCard } from '@/components/dashboard/supabase-connection-card';
 import { assertivenessScenarios } from '@/lib/ai/scenarios';
+import { demoDashboardMetrics, demoSkillBalance } from '@/lib/demo/product-demo-data';
 import { getSupabaseEnvStatus } from '@/lib/supabase/client';
 
 export default function DashboardPage() {
@@ -29,9 +32,9 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <Metric icon={Flame} label="Current streak" value="3 days" />
-        <Metric icon={MessageCircle} label="Practice sessions" value="12" />
-        <Metric icon={CalendarDays} label="Next focus" value="Boundaries" />
+        {demoDashboardMetrics.map((metric) => (
+          <Metric key={metric.label} icon={metric.icon} label={metric.label} value={metric.value} />
+        ))}
       </div>
 
       <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_360px]">
@@ -55,12 +58,14 @@ export default function DashboardPage() {
         </Card>
 
         <Card className="p-5">
-          <h2 className="font-semibold">Skill balance</h2>
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="font-semibold">Skill balance</h2>
+            <DemoLabel />
+          </div>
           <div className="mt-5 space-y-5">
-            <Bar label="Clarity" value={74} />
-            <Bar label="Empathy" value={82} />
-            <Bar label="Assertiveness" value={68} />
-            <Bar label="Confidence" value={71} />
+            {demoSkillBalance.map((skill) => (
+              <Bar key={skill.label} label={skill.label} value={skill.value} />
+            ))}
           </div>
         </Card>
       </div>
@@ -84,7 +89,10 @@ function Metric({
   return (
     <Card className="p-5">
       <Icon className="mb-4 size-5 text-primary" />
-      <p className="text-sm text-muted-foreground">{label}</p>
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-sm text-muted-foreground">{label}</p>
+        <DemoLabel />
+      </div>
       <p className="mt-1 text-2xl font-semibold">{value}</p>
     </Card>
   );
@@ -99,5 +107,13 @@ function Bar({ label, value }: { label: string; value: number }) {
       </div>
       <Progress value={value} />
     </div>
+  );
+}
+
+function DemoLabel() {
+  return (
+    <span className="rounded-full border bg-background/70 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+      Demo
+    </span>
   );
 }

@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import { ArrowLeft, ShieldCheck } from 'lucide-react';
+
 import { LoginForm } from '@/components/auth/login-form';
 
 export default function LoginPage() {

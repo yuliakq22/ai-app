@@ -1,7 +1,9 @@
 import Link from 'next/link';
+
 import { Brain, History, Home, LineChart, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+
 import { AuthNav } from '@/components/auth/auth-nav';
+import { Button } from '@/components/ui/button';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: Home },
