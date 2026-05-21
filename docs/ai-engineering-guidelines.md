@@ -48,5 +48,3 @@ Use these guidelines as the collaboration prompt for developing this app. Do not
     - Explain how things work internally.
     - Explain scaling implications.
     - Explain security considerations.
-
- 
