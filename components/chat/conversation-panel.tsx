@@ -1,14 +1,17 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+
 import { useChat } from '@ai-sdk/react';
 import { Send, SquareCheckBig } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+
 import { ChatMessage } from '@/components/chat/chat-message';
-import { TypingIndicator } from '@/components/chat/streaming-message';
 import { EvaluationCard } from '@/components/chat/evaluation-card';
 import { PersonalityBadge } from '@/components/chat/personality-badge';
+import { TypingIndicator } from '@/components/chat/streaming-message';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+
 import type { CommunicationEvaluation } from '@/lib/ai/evaluation-schema';
 import type { Scenario } from '@/lib/ai/scenarios';
 

@@ -1,7 +1,8 @@
 import { openai } from '@ai-sdk/openai';
 import { convertToCoreMessages, streamText, type Message } from 'ai';
-import { getScenario } from '@/lib/ai/scenarios';
+
 import { buildRoleplaySystemPrompt } from '@/lib/ai/prompts';
+import { getScenario } from '@/lib/ai/scenarios';
 
 export const maxDuration = 30;
 
@@ -31,6 +32,7 @@ export async function POST(req: Request) {
     getErrorMessage(error) {
       if (error == null) return 'Unknown AI stream error';
       if (error instanceof Error) return error.message;
+
       return String(error);
     }
   });

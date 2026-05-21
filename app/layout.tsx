@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
+
 import { Inter, Lora } from 'next/font/google';
+
 import './globals.css';
 import { AppShell } from '@/components/layout/app-shell';
 import { cn } from '@/lib/utils';

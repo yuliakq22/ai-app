@@ -1,11 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
-import type { User } from '@supabase/supabase-js';
+
 import { LogOut, UserRound } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+
+import type { User } from '@supabase/supabase-js';
 
 export function AuthNav() {
   const [user, setUser] = useState<User | null>(null);

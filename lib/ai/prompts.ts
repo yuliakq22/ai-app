@@ -1,5 +1,5 @@
-import type { CoreMessage } from 'ai';
 import type { Scenario } from './scenarios';
+import type { CoreMessage } from 'ai';
 
 export function buildRoleplaySystemPrompt(scenario: Scenario) {
   return `You are Human Skills, an AI communication roleplay partner for assertiveness training.

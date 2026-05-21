@@ -1,8 +1,11 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+
 import { useRouter } from 'next/navigation';
+
 import { Loader2, LogIn, UserPlus } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
@@ -42,11 +45,13 @@ export function LoginForm() {
 
     if (authError) {
       setError(authError.message);
+
       return;
     }
 
     if (mode === 'sign-up' && !data.session) {
       setMessage('Check your email to confirm your account, then come back to sign in.');
+
       return;
     }
 

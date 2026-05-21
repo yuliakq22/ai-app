@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+
 import { ConversationPanel } from '@/components/chat/conversation-panel';
 import { getScenario } from '@/lib/ai/scenarios';
 
