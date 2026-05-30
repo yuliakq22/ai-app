@@ -1,25 +1,25 @@
 import Link from 'next/link';
 
-import { ArrowRight, MessagesSquare, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, Brain, ChartNoAxesColumn, ShieldCheck } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
 const pillars = [
   {
-    icon: MessagesSquare,
-    title: 'Practice out loud',
-    body: 'Roleplay realistic moments where tone, timing, and clarity matter.'
-  },
-  {
     icon: ShieldCheck,
-    title: 'Stay emotionally safe',
-    body: 'The product is coaching for communication skills, with no diagnosis or treatment framing.'
+    title: 'Private, structured coaching',
+    body: 'A calm space to name what happened and work with one question at a time.'
   },
   {
-    icon: Sparkles,
-    title: 'Get structured feedback',
-    body: 'Review assertiveness, empathy, clarity, and confidence with specific rewrites.'
+    icon: Brain,
+    title: 'Grounded frameworks',
+    body: 'Uses CBT, NVC, ACT, and DBT-informed exercises without clinical overreach.'
+  },
+  {
+    icon: ChartNoAxesColumn,
+    title: 'Track patterns over time',
+    body: 'See recurring emotions, triggers, and exercises as your sessions accumulate.'
   }
 ];
 
@@ -29,19 +29,17 @@ export default function LandingPage() {
       <section className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl content-center gap-10 px-4 py-12 md:grid-cols-[1.05fr_0.95fr] md:py-20">
         <div className="flex flex-col justify-center animate-fade-up">
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.18em] text-primary">
-            Assertiveness training
+            Emotional intelligence coaching
           </p>
-          <h1 className="font-serif text-5xl leading-[1.05] text-calm-ink md:text-7xl">
-            Human Skills
-          </h1>
+          <h1 className="font-serif text-5xl leading-[1.05] text-calm-ink md:text-7xl">EQ Coach</h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-            AI roleplay simulations for becoming clearer, steadier, and more effective in difficult
-            conversations.
+            A structured AI coaching space for working through emotional moments, naming patterns,
+            and leaving with one practical exercise.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
-              <Link href="/scenarios">
-                Start a scenario
+              <Link href="/session/new">
+                Begin
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
@@ -53,20 +51,18 @@ export default function LandingPage() {
         <div className="flex items-center">
           <div className="w-full rounded-lg border bg-card/80 p-4 shadow-soft backdrop-blur animate-fade-up">
             <div className="space-y-3">
-              <ChatBubble role="Manager">
-                I need you to take on one more urgent task today. Can you make it happen?
-              </ChatBubble>
+              <ChatBubble role="Coach">What emotion feels most present right now?</ChatBubble>
               <ChatBubble role="You" align="right">
-                I can’t take that on today without dropping one of my current priorities. I can help
-                choose what moves, or I can pick this up tomorrow morning.
+                I think it is overwhelm. Something small happened at work, but my reaction felt
+                bigger than the situation.
               </ChatBubble>
               <div className="rounded-lg bg-muted/70 p-4">
-                <p className="text-sm font-medium">Coaching snapshot</p>
+                <p className="text-sm font-medium">Session snapshot</p>
                 <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
-                  <Score label="Clarity" value="86" />
-                  <Score label="Empathy" value="78" />
-                  <Score label="Assertiveness" value="91" />
-                  <Score label="Confidence" value="82" />
+                  <Score label="Emotion" value="Overwhelm" />
+                  <Score label="Pattern" value="Perfectionism" />
+                  <Score label="Framework" value="CBT" />
+                  <Score label="Exercise" value="Thought Record" />
                 </div>
               </div>
             </div>

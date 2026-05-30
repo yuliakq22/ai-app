@@ -1,4 +1,4 @@
-import { openai } from '@ai-sdk/openai';
+import { anthropic } from '@ai-sdk/anthropic';
 import { convertToCoreMessages, generateObject, type Message } from 'ai';
 
 import { evaluationSchema } from '@/lib/ai/evaluation-schema';
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   }
 
   const { object } = await generateObject({
-    model: openai('gpt-4o-mini'),
+     model: anthropic('claude-sonnet-4-20250514'),
     system: feedbackSystemPrompt,
     prompt: buildEvaluationPrompt(convertToCoreMessages(messages), scenario),
     schema: evaluationSchema

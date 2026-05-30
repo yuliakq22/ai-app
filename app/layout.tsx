@@ -17,8 +17,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: 'Human Skills',
-  description: 'AI roleplay simulations for assertive, emotionally intelligent communication.'
+  title: 'EQ Coach',
+  description: 'Structured AI coaching for emotional intelligence and reflection.'
 };
 
 export default function RootLayout({

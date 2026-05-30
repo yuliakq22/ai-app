@@ -1,4 +1,4 @@
-import { openai } from '@ai-sdk/openai';
+import { anthropic } from '@ai-sdk/anthropic';
 import { convertToCoreMessages, streamText, type Message } from 'ai';
 
 import { buildRoleplaySystemPrompt } from '@/lib/ai/prompts';
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   }
 
   const result = streamText({
-    model: openai('gpt-4o-mini'),
+    model: anthropic('claude-sonnet-4-20250514'),
     system: buildRoleplaySystemPrompt(scenario),
     messages: convertToCoreMessages(messages),
     temperature: 0.72,

@@ -1,15 +1,25 @@
 import Link from 'next/link';
 
-import { Brain, History, Home, LineChart, Sparkles } from 'lucide-react';
+import {
+  BookOpenCheck,
+  History,
+  Home,
+  Leaf,
+  LineChart,
+  MessageCircleHeart,
+  UserRound
+} from 'lucide-react';
 
 import { AuthNav } from '@/components/auth/auth-nav';
 import { Button } from '@/components/ui/button';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: Home },
-  { href: '/scenarios', label: 'Practice', icon: Sparkles },
+  { href: '/session/new', label: 'Session', icon: MessageCircleHeart },
   { href: '/history', label: 'History', icon: History },
-  { href: '/progress', label: 'Progress', icon: LineChart }
+  { href: '/insights', label: 'Insights', icon: LineChart },
+  { href: '/exercises', label: 'Exercises', icon: BookOpenCheck },
+  { href: '/profile', label: 'Profile', icon: UserRound }
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -19,9 +29,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <span className="grid size-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-              <Brain className="size-5" />
+              <Leaf className="size-5" />
             </span>
-            <span>Human Skills</span>
+            <span>EQ Coach</span>
           </Link>
           <nav className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => (
@@ -35,14 +45,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </nav>
           <div className="flex items-center gap-2">
             <Button asChild size="sm" className="hidden sm:inline-flex">
-              <Link href="/scenarios">Start practice</Link>
+              <Link href="/session/new">Begin</Link>
             </Button>
             <AuthNav />
           </div>
         </div>
       </header>
       <main>{children}</main>
-      <nav className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 rounded-lg border bg-background/90 p-1 shadow-soft backdrop-blur md:hidden">
+      <nav className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-6 rounded-lg border bg-background/90 p-1 shadow-soft backdrop-blur md:hidden">
         {navItems.map((item) => (
           <Link
             href={item.href}

@@ -1,13 +1,16 @@
 import Link from 'next/link';
 
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Circle } from 'lucide-react';
 
 import { SupabaseConnectionCard } from '@/components/dashboard/supabase-connection-card';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
-import { assertivenessScenarios } from '@/lib/ai/scenarios';
-import { demoDashboardMetrics, demoSkillBalance } from '@/lib/demo/product-demo-data';
+import {
+  demoDashboardStats,
+  demoPatterns,
+  demoQuickStarts,
+  demoRecentSessions
+} from '@/lib/demo/eq-coach-demo-data';
 import { getSupabaseEnvStatus } from '@/lib/supabase/client';
 
 export default function DashboardPage() {
@@ -18,40 +21,43 @@ export default function DashboardPage() {
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">Today</p>
-          <h1 className="mt-2 font-serif text-4xl">Practice with intention</h1>
+          <h1 className="mt-2 font-serif text-4xl">Good evening. Start where you are.</h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Build assertive communication through short, realistic simulations.
+            Work through what is present, notice emotional patterns, and leave with one grounded
+            exercise.
           </p>
         </div>
         <Button asChild>
-          <Link href="/scenarios">
-            Choose scenario
+          <Link href="/session/new">
+            Start today&apos;s session
             <ArrowRight className="size-4" />
           </Link>
         </Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        {demoDashboardMetrics.map((metric) => (
+        {demoDashboardStats.map((metric) => (
           <Metric key={metric.label} icon={metric.icon} label={metric.label} value={metric.value} />
         ))}
       </div>
 
-      <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_360px]">
+      <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_380px]">
         <Card className="p-5">
-          <h2 className="font-semibold">Recommended next</h2>
-          <div className="mt-5 space-y-4">
-            {assertivenessScenarios.slice(0, 3).map((scenario) => (
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="font-semibold">What&apos;s on your mind today?</h2>
+            <DemoLabel />
+          </div>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            {demoQuickStarts.map((start) => (
               <Link
-                href={`/session/${scenario.id}`}
-                key={scenario.id}
-                className="flex items-center justify-between rounded-lg border bg-background/70 p-4 transition hover:bg-muted/60"
+                href={start.href}
+                key={start.label}
+                className="rounded-lg border bg-background/70 p-4 transition hover:bg-muted/60"
               >
                 <div>
-                  <p className="font-medium">{scenario.title}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{scenario.summary}</p>
+                  <p className="font-medium">{start.label}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{start.prompt}</p>
                 </div>
-                <ArrowRight className="size-4 text-muted-foreground" />
               </Link>
             ))}
           </div>
@@ -59,16 +65,72 @@ export default function DashboardPage() {
 
         <Card className="p-5">
           <div className="flex items-center justify-between gap-3">
-            <h2 className="font-semibold">Skill balance</h2>
+            <h2 className="font-semibold">Detected patterns</h2>
             <DemoLabel />
           </div>
-          <div className="mt-5 space-y-5">
-            {demoSkillBalance.map((skill) => (
-              <Bar key={skill.label} label={skill.label} value={skill.value} />
+          <div className="mt-5 space-y-3">
+            {demoPatterns.map((pattern) => (
+              <div key={pattern.name} className="rounded-md bg-muted/60 p-3">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-medium">{pattern.name}</p>
+                  <span className="text-sm text-muted-foreground">{pattern.frequency}x</span>
+                </div>
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                  {pattern.description}
+                </p>
+              </div>
             ))}
           </div>
         </Card>
       </div>
+
+      <Card className="mt-5 p-5">
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-semibold">Recent sessions</h2>
+          <DemoLabel />
+        </div>
+        <div className="mt-5 grid gap-3 md:grid-cols-3">
+          {demoRecentSessions.map((session) => (
+            <Link
+              href="/history"
+              key={session.title}
+              className="rounded-lg border bg-background/70 p-4 transition hover:bg-muted/60"
+            >
+              <p className="font-medium">{session.title}</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {session.date} · {session.framework}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {session.emotionTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border bg-background px-2 py-0.5 text-xs text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </Card>
+
+      <Card className="mt-5 p-5">
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-semibold">7-day rhythm</h2>
+          <DemoLabel />
+        </div>
+        <div className="mt-5 flex gap-3">
+          {[true, true, false, true, true, false, false].map((completed, index) => (
+            <span
+              key={index}
+              className="grid size-9 place-items-center rounded-full border bg-background text-muted-foreground"
+            >
+              <Circle className={completed ? 'size-3 fill-primary text-primary' : 'size-3'} />
+            </span>
+          ))}
+        </div>
+      </Card>
 
       <div className="mt-5">
         <SupabaseConnectionCard initialEnv={supabaseEnv} />
@@ -95,18 +157,6 @@ function Metric({
       </div>
       <p className="mt-1 text-2xl font-semibold">{value}</p>
     </Card>
-  );
-}
-
-function Bar({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="space-y-2">
-      <div className="flex justify-between text-sm">
-        <span>{label}</span>
-        <span className="text-muted-foreground">{value}</span>
-      </div>
-      <Progress value={value} />
-    </div>
   );
 }
 
